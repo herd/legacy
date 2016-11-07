@@ -1,0 +1,2 @@
+upstream: "https://github.com/herd/herd-opam-repository/tree/master/"
+browse: "https://github.com/herd/herd-opam-repository/tree/master/packages"
