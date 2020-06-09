@@ -1,0 +1,7 @@
+*.native
+*.byte
+*~
+_build
+lib/bytes.ml
+lib/bytes.mli
+.DS_Store

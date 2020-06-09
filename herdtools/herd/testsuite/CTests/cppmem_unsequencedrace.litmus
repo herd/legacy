@@ -1,0 +1,18 @@
+C cppmem_unsequenced_race
+
+{
+[x] = 2;
+[y] = 0;
+}
+
+// This litmus test is ported from an example distributed
+// with the CppMem tool. Original is available online at:
+// http://svr-pes20-cppmem.cl.cam.ac.uk/cppmem/index.html
+
+P0 (int* x, int* y) {
+  *y = (*x == (*x = 3));
+}
+
+locations [x;y;]
+exists
+()

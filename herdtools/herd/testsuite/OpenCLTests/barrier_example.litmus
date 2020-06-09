@@ -1,0 +1,27 @@
+OpenCL barrier_example
+"PodWW Rfe PodRR Fre"
+Prefetch=0:x=F,0:y=W,1:y=F,1:x=T
+Com=Rf Fr
+Orig=PodWW Rfe PodRR Fre
+
+{
+[x] = 0;
+[y] = 0;
+}
+
+P0 (__global int* x, __global int* y) {
+  atomic_store_explicit(x, 1, memory_order_release);
+  B1: barrier(CLK_GLOBAL_MEM_FENCE);
+  atomic_load_explicit(y, memory_order_acquire);
+}
+
+P1 (__global int* x, __global int* y) {
+  atomic_store_explicit(y, 1, memory_order_release);
+  B1: barrier(CLK_GLOBAL_MEM_FENCE);
+  atomic_load_explicit(x, memory_order_acquire);
+}
+
+scopeTree
+(device (work_group P0 P1))
+
+exists (x=0 /\ y=0)
